@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import MenuListComposition from './Components/MenuListComposition.js'
+import {AuthenticateUI} from './Components/AuthenticateUI.js'
 
 function App() {
   return (
-    <div className="App">
-      <MenuListComposition/>
+    <div className="App"> 
+      <AuthenticateUI/>
     </div>
   );
 }
