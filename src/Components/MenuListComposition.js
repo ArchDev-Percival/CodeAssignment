@@ -7,6 +7,8 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import FallbackAvatars from './Avatar';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,7 +67,7 @@ export default function MenuListComposition({logout}) {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          Placeholder for profile image
+          <FallbackAvatars/>
         </Button>
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
