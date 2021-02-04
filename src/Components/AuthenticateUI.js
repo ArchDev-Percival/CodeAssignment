@@ -7,10 +7,11 @@ export const AuthenticateUI = () => {
   const {
     isAuthenticated,
     loginWithRedirect,
+    logout,
   } = useAuth0();
 
   if (isAuthenticated) {
-    return <MenuListComposition/>
+    return <MenuListComposition logout={logout}/>
   }
   else {
     return <LoginButton loginWithRedirect={loginWithRedirect}/>;

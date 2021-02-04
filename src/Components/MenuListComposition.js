@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuListComposition() {
+export default function MenuListComposition({logout}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -33,6 +33,11 @@ export default function MenuListComposition() {
 
     setOpen(false);
   };
+
+  const handleLogout = (event) => {
+    logout({ returnTo: window.location.origin });
+    handleClose(event);
+  }
 
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
@@ -73,7 +78,7 @@ export default function MenuListComposition() {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}>Email (Placeholder)</MenuItem>
                     <MenuItem onClick={handleClose}>My profile</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
