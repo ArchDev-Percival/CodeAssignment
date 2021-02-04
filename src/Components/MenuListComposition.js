@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuListComposition({logout}) {
+export default function MenuListComposition({logout, user}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -67,7 +67,7 @@ export default function MenuListComposition({logout}) {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          <FallbackAvatars/>
+          <FallbackAvatars user={user}/>
         </Button>
         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
@@ -78,8 +78,8 @@ export default function MenuListComposition({logout}) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}>Email (Placeholder)</MenuItem>
-                    <MenuItem onClick={handleClose}>My profile</MenuItem>
+                    <MenuItem onClick={handleClose}>{user.email}</MenuItem>
+                    <MenuItem onClick={handleClose}>My profile {"("+user['https://example.com/country']+")"}</MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

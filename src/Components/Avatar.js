@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FallbackAvatars({fullname, image}) {
+export default function FallbackAvatars({user}) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Avatar alt={fullname} src={image} className={classes.orange}/>
+      <Avatar alt={user.name} src={user.picture} className={classes.orange}>{user.name[0]}</Avatar>
       <ExpandMoreIcon/>
     </div>
   );

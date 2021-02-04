@@ -1,17 +1,13 @@
 import React from 'react';
 import {LoginButton} from './LoginButton';
 import MenuListComposition from './MenuListComposition';
-import { useAuth0 } from '@auth0/auth0-react';
 
-export const AuthenticateUI = () => {
-  const {
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-  } = useAuth0();
+
+export const AuthenticateUI = ({isAuthenticated, logout, loginWithRedirect, user}) => {
+
 
   if (isAuthenticated) {
-    return <MenuListComposition logout={logout}/>
+    return <MenuListComposition logout={logout} user={user}/>
   }
   else {
     return <LoginButton loginWithRedirect={loginWithRedirect}/>;
