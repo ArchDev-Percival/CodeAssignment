@@ -8,16 +8,17 @@ import config from './auth0_config.json';
 import ErrorBoundary from "./Components/ErrorBoundary";
 
 ReactDOM.render(
-  <Auth0Provider
-    domain={config.domain}
-    clientId={config.clientID}
-    redirectUri={window.location.origin}
-  >
-  <React.StrictMode>
-  <ErrorBoundary>
-    <App />
-    </ErrorBoundary>
-  </React.StrictMode></Auth0Provider>,
+    <Auth0Provider
+      domain={config.domain}
+      clientId={config.clientID}
+      redirectUri={window.location.origin}
+    >
+      <React.StrictMode>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      </React.StrictMode>
+    </Auth0Provider>,
   document.getElementById('root')
 );
 

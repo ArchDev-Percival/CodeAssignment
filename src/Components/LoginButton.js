@@ -12,5 +12,5 @@ const useStyles = makeStyles((theme) => ({
 
 export const LoginButton = ({loginWithRedirect}) => {
   const classes = useStyles();
-  return <Button variant="contained" color="primary" onClick={loginWithRedirect}>Log in</Button>;
+  return <Button variant="contained" color="secondary" onClick={loginWithRedirect}>Log in</Button>;
 }

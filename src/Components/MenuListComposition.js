@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import FallbackAvatars from './Avatar';
-
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +23,7 @@ export default function MenuListComposition({logout, user}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const history = useHistory();
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -35,6 +36,10 @@ export default function MenuListComposition({logout, user}) {
 
     setOpen(false);
   };
+
+  const handleUserProfileClick = () => {
+    history.push('/profile');
+  }
 
   const handleLogout = (event) => {
     logout({ returnTo: window.location.origin });
@@ -79,7 +84,7 @@ export default function MenuListComposition({logout, user}) {
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}>{user.email}</MenuItem>
-                    <MenuItem onClick={handleClose}>My profile {"("+user['https://example.com/country']+")"}</MenuItem>
+                    <MenuItem onClick={handleUserProfileClick}>My profile {"("+user['https://example.com/country']+")"}</MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
