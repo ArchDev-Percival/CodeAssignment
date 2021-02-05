@@ -18,7 +18,7 @@ export default class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.hasError) {
-      return <div>This is a placholder for an error screen</div>;
+      return <div>This is a placholder for Error Screen</div>;
     }
     return this.props.children;
   }
