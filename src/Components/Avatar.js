@@ -1,13 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import { deepOrange } from '@material-ui/core/colors';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import { deepOrange } from "@material-ui/core/colors";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    '& > *': {
+    display: "flex",
+    "& > *": {
       margin: theme.spacing(1),
     },
   },
@@ -17,13 +17,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FallbackAvatars({user}) {
+export default function FallbackAvatars({ user }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Avatar alt={user.name} src={user.picture} className={classes.orange}>{user.name[0]}</Avatar>
-      <ExpandMoreIcon/>
+      <Avatar alt={user.name} src={user.picture} className={classes.orange}>
+        {user.name[0]}
+      </Avatar>
+      <ExpandMoreIcon />
     </div>
   );
 }

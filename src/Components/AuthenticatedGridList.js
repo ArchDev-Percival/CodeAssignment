@@ -1,15 +1,14 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
-
-import cardsData from '../cardsData.json'
+import cardsData from "../cardsData.json";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -17,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   cardContent: {
     flexGrow: 1,
@@ -31,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AuthenticatedGridList() {
   const classes = useStyles();
-  return (<Grid container spacing={4}>
+  return (
+    <Grid container spacing={4}>
       {cardsData.map((card) => (
         <Grid item key={card} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
@@ -45,8 +45,8 @@ export default function AuthenticatedGridList() {
                 {card.title}
               </Typography>
               <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Typography>
             </CardContent>
             <CardActions>
@@ -57,5 +57,6 @@ export default function AuthenticatedGridList() {
           </Card>
         </Grid>
       ))}
-    </Grid>);
+    </Grid>
+  );
 }
