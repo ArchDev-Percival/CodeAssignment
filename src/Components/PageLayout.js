@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -35,12 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PageLayout({
-  isAuthenticated,
-  logout,
-  loginWithRedirect,
-  user,
-}) {
+export default function PageLayout() {
   const classes = useStyles();
   const history = useHistory();
   const returnToHome = () => history.push("/");
@@ -64,12 +60,7 @@ export default function PageLayout({
             </Typography>
           </div>
   
-              <AuthenticateButtonMenuToggle
-                isAuthenticated={isAuthenticated}
-                loginWithRedirect={loginWithRedirect}
-                logout={logout}
-                user={user}
-              />
+              <AuthenticateButtonMenuToggle/>
    
           </div>
         </Toolbar>
@@ -102,18 +93,11 @@ export default function PageLayout({
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Switch>
-            <Route path="/" exact component={() => {return <ErrorBoundary><GridCards isAuthenticated={isAuthenticated} user={user}/></ErrorBoundary> }} />
+            <Route path="/" exact component={GridCards}/>
 
             <ProtectedRoute
               path="/profile"
-              component={() => {
-                return (
-                  <Profile
-                    isAuthenticated={isAuthenticated}
-                    loginWithRedirect={loginWithRedirect}
-                    logout={logout}
-                    user={user}/> )
-              }}
+              component={Profile}
             />
           </Switch>
         </Container>

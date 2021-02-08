@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { deepOrange } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FallbackAvatars({ user }) {
+export default function FallbackAvatars() {
   const classes = useStyles();
+  const { user } = useAuth0();
 
   return (
     <div className={classes.root}>

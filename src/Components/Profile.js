@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles({
   root: {
@@ -14,13 +15,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Profile({
-  isAuthenticated,
-  logout,
-  loginWithRedirect,
-  user,
-}) {
+export default function Profile() {
+  
   const classes = useStyles();
+  const {user} = useAuth0();
 
   return (
     <Card className={classes.root}>

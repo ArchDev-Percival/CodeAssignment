@@ -1,0 +1,15 @@
+- error boundary fix
+- user profile simple component
+- loading state
+- cleanup
+- documentation
+
+- Tag it to the Google App
+- Universal Login Cutomization
+-prettier
+-tests?
+- API call
+- Ask for meeting to be preponed
+
+npm install -D prettier
+ npm install -D eslint eslint-config-prettier
