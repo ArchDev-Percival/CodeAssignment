@@ -6,11 +6,17 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ReactComponent as CruiseIcon } from "../assets/cruise.svg";
-import { AuthenticateUI } from "./AuthenticateUI";
-import AuthenticatedGridList from "./AuthenticatedGridList";
+import 
+{AuthenticateButtonMenuToggle} from "./AuthenticateButtonMenuToggle";
+import GridCards from "./GridCards";
 import Profile from "./Profile";
-
+import ErrorBoundary from "./ErrorBoundary";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { Switch, Route, useHistory } from "react-router-dom";
+
+const ProtectedRoute = ({ component, ...args }) => (
+  <Route component={withAuthenticationRequired(component)} {...args} />
+);
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -51,24 +57,25 @@ export default function PageLayout({
               alignItems: "center",
             }}
           >
-            <div onClick={returnToHome}>
-              <CruiseIcon />
-              <Typography variant="h6" color="inherit" noWrap>
-                &nbsp;Travel0
-              </Typography>
-            </div>
-            <div>
-              <AuthenticateUI
+          <div onClick={returnToHome}>
+            <CruiseIcon />
+            <Typography variant="h6" color="inherit" noWrap>
+              &nbsp;Travel0
+            </Typography>
+          </div>
+  
+              <AuthenticateButtonMenuToggle
                 isAuthenticated={isAuthenticated}
                 loginWithRedirect={loginWithRedirect}
                 logout={logout}
                 user={user}
               />
-            </div>
+   
           </div>
         </Toolbar>
       </AppBar>
       <main>
+       
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
@@ -95,9 +102,9 @@ export default function PageLayout({
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Switch>
-            <Route path="/" exact component={AuthenticatedGridList} />
+            <Route path="/" exact component={() => {return <ErrorBoundary><GridCards isAuthenticated={isAuthenticated} user={user}/></ErrorBoundary> }} />
 
-            <Route
+            <ProtectedRoute
               path="/profile"
               component={() => {
                 return (
@@ -105,14 +112,12 @@ export default function PageLayout({
                     isAuthenticated={isAuthenticated}
                     loginWithRedirect={loginWithRedirect}
                     logout={logout}
-                    user={user}
-                  />
-                );
+                    user={user}/> )
               }}
             />
           </Switch>
         </Container>
-        <div></div>
+        
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
