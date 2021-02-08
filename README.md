@@ -1,46 +1,42 @@
-# Auth0 Cruise0 Proof of Concept
+# Auth0 powering Cruise0 - A Proof of Concept for Travel0
 
 ## Purpose:
-A front-end single page application in React.js to demonstrate integration of the Auth0 SDK to meet IAM requirements. 
+A front-end single page application in React.js to demonstrate the power of the Auth0 React SDK to help Cruise0 meet its core authentication/authorization requirements with minimal code. 
 
-## Key Demonstrations:
+**-----------------------**
+**-----------------------**
 
-### 1. Show how Auth0 can support the Cruise0 app modernization on ReactJS
- * Demonstrate the ease of use and core functionality of the [Auth0 React SDK for Single Page Apps](https://auth0.com/docs/libraries/auth0-react)
-  * Configure the `Auth0Provider` so that `useAuth0()` can be used anywhere within its scope.
-  * Use `useAuth0()` to access various authentication capabilities provided by the SDK such as:              
-    * `loginWithRedirect`
-    * `logout`
-    * `user`
-    * `isLoading`
-    * `error`
-  * Demonstrate protected routes such as `/profile`
+## Setup
 
-### 2. Show how a new customer can sign up, and how an existing customer can sign in with email/password, and Google
- * Utilize [Auth0 Database Connections](https://auth0.com/docs/connections/database)
- * Utilize [Auth0 Social Identity Providers](https://auth0.com/docs/connections/identity-providers-social), specifically [Connect[ing] Apps to Google](https://auth0.com/docs/connections/social/google)
+### Auth0: Setup Account, Application and Rules
 
-### 3. Ensure that customers who login with username/password and Google, with the same email address, will be treated as the same user. Also known as Account Linking.
- * Utilize [Auth0 Account Linking](https://auth0.com/docs/users/user-account-linking) specifically the [Account Link Extension](https://auth0.com/docs/extensions/account-link-extension)
+#### For Use Case 1: Signup & Verification
+ * [Signup](https://auth0.com/signup) for an Auth0 account.
+ * [Register a Single Page App](https://auth0.com/docs/applications/set-up-an-application/register-single-page-app) in the Auth0 Management Dashboard.
+ * Get familiar with the [Application Settings](https://auth0.com/docs/get-started/dashboard/application-settings): 
+     * Note down the `Domain` and `Client ID`
+     * Configure the `Allowed Callback URLs` depending on how you are deploying the POC
+ * [Force email-verification](https://auth0.com/rules/email-verified). [This is already done in the source code of the POC]
+ * Setup [Auth0 Social Identity Providers](https://auth0.com/docs/connections/identity-providers-social), specifically [Connect[ing] Apps to Google](https://auth0.com/docs/connections/social/google)
 
-### 4. The application should display an error if the customer’s email address is not verified.
- * Through the context provided within the `Auth0Provider` wrapper, use `useAuth0()` to access the authenticated user's profile. 
- * The boolean value of `user.email_verified` tells us if the present authenticated account is verified and displays relevant "core functionality" if so. If the user is not verified, an appropriate message is displayed. 
+#### For Use Case 2: Linked Accounts
+ * Install and configure the [Account Link Extension](https://auth0.com/docs/extensions/account-link-extension)
+ * Navigate to the Auth0Dashboard/Rules to observer the new `auth0-account-link-extension` rule generated.
 
-### 5. Use Auth0 features to customize the profile page so both the photo and country flag are displayed without prompting users to input directly.
- * Utilize pre-existing [rule](https://auth0.com/docs/rules), that is **Add Country To The User Profile** in the Auth0 management dashboard to enrich the user profile to include country information.
- * Create a rule to elevate the data from the secondary profile in the `user` object that is returned by `useAuth0()`.
- * **Learning:** Custom claims need to have a globally unique name, which to Auth0 is a URL. [Source](https://auth0.com/docs/tokens/create-namespaced-custom-claims)
- * The country name is used to obtain a country code which is replaced in `https://lipis.github.io/flag-icon-css/flags/4x3/${code}.svg` to obtain the related country flag. 
+#### For Use Case 3: Accessing Merged Profile from other linked Identities
+ * Copy the code snippet from [Account Linking - Add missing information with Rules](https://auth0.com/docs/users/link-user-accounts#add-missing-information-with-rules)
+ * [Create a new Empty Rule](https://auth0.com/docs/rules/create-rules):
+     * Name the rule appropriately
+     * Paste the code copied earlier into the **Script** field
+     * Update the `const propertiesToComplete = ["given_name", "family_name", "name"];` array in the snippet to include `"picture"`. 
+     * Update the trigger conditions to `if (!user[property] || property ==="picture")` so that ProfileData is used. Additional conditions can be added as required. 
 
+#### Use Case 4: Enriched User Information
+ * Create a rule to [add country to the user-profile](https://auth0.com/rules/add-country)
 
-### 6. If the photo and country of the customer are known, make sure this information is passed back to the application and shown after the user authenticates.
- * When a user is authenticated, the previously displayed LoginButton is replaced with a menu that displays:
-    * the user's photo, if present, or the first letter of their name, if a photo is not available.
-    * the country flag is displayed along the route to the profile.
- * This information is also present in the user profile page 
+### Deploy Application  
     
-## Setting up the App Locally
+#### Setting up the App Locally
  * Download the GitHub repository: `git clone https://github.com/DominicPD/CodeAssignment`
  * To change the Auth0 tenant, update `./src/auth0_config.json`
  * Install the dependencies: `npm install`
@@ -48,7 +44,7 @@ A front-end single page application in React.js to demonstrate integration of th
  * The application will run on `http://localhost/3000`
  * Make sure to update the callback URL in the relevant Application in the Auth0 Management dashboard to `http://localhost/3000`.
  
-## Deploy the App to Netlify
+#### Deploy the App to Netlify
  * Download the GitHub repository: `git clone https://github.com/DominicPD/CodeAssignment`
  * To change the Auth0 tenant, update `./src/auth0_config.json`
  * Install the dependencies: `npm install`
@@ -58,14 +54,78 @@ A front-end single page application in React.js to demonstrate integration of th
  * If you would like to trigger automatic deployments, connect your Netlify project to your fork of `https://github.com/DominicPD/CodeAssignment` on GitHub.
  * Make sure to update the callback URL in the relevant Application in the Auth0 Management dashboard to **the URL generated by the Netlify deployment**.
  
-## Live Demo Link: 
+#### Live Demo Link: 
  * https://agitated-newton-c814a2.netlify.app/
 
+ **-----------------------**
+ **-----------------------**
+
+## Usage:
+
+### Use Case 1: Signup & Verification
+ * After deploying the application locally or on your platform of choice, navigate to App Home, `http://localhost/3000` or the URL generated by your platform. 
+ * Observe that the application does not display content without a login. 
+ * Click on the LoginButton, which is located on the top-right of the screen.
+ * This will redirect you to the Auth0 universal login page (which can be customized)
+ * Signup/Login with username & password
+ * We will be directed back to our home URL. 
+ * The content (travel catalog) will not be displayed if the email address usd to create the account is not verified.
+ * On account verification, the travel catlogue is displayed
+ * Observe the Avatar/Profile picture in the UI structure that replaces the Login button 
+
+### Use Case 2: Linked Accounts
+ * Login with Google using the same email address used in Use Case 1.
+ * For the purposes of this demonstration, it would be ideal to have a profile image used in the account.
+ * Upon successful authentication, you will be re-directed to a screen which highlights all the account(s) that are possible candidates for linking. Approve the linking of the accounts.
+ * On approving the linking of accounts, you will need to authenticate via the other identities that use the same email address. This will direct you to a login screen where you will need to enter the email and password used in **Use Case 1**
+ * On successful authentication from the secondary account, the accounts will be merged and you will be redicted back to App Home.
+ * Observe the Avatar/Profile picture in the UI structure that replaces the Login button. 
+
+### Use Case 3: Accessing Merged Profile from other linked Identities
+ * Login using the steps in either of the previous use cases. 
+ * Observe the Avatar/Profile picture in the UI structure (Avataar) that replaces the Login button. 
+
+### Use Case 4: Enriched User Information
+ * Observe the UI Structure (Avatar) that replaces the Login Button, and click on the picture.
+ * A menu pops up. Observe the country flag on the "Profile" menu item.
+ * Click on Profile to be directed to the profile page. 
+ * Logout, connect to a VPN in another location (say, the United States) and login again. Observer the change in the flag. 
 
 
 
+**-----------------------**
+**-----------------------**
+
+## Evaluation of Core Requirements
+
+#### 1. Show how Auth0 can support the Cruise0 app modernization on ReactJS
+ * Demonstrate the ease of use and core functionality of the [Auth0 React SDK for Single Page Apps](https://auth0.com/docs/libraries/auth0-react)
+  * Configure the `Auth0Provider` so that the `useAuth0()` hook can be used anywhere within its scope.
+  * Use `useAuth0()` to access authentication state (`isLoading`, `isAuthenticated` and `user`) and authentication methods (`loginWithRedirect` and `logout`) provided by the SDK such as:              
+    * `loginWithRedirect` => Trigger redirection to an Auth0 login page, and redirect back to the **callback URL** on successful validation.
+  * Demonstrate protected routes such as `/profile`
+
+#### 2. Show how a new customer can sign up, and how an existing customer can sign in with email/password, and Google
+ * Utilize [Auth0 Database Connections](https://auth0.com/docs/connections/database)
+ * Utilize [Auth0 Social Identity Providers](https://auth0.com/docs/connections/identity-providers-social), specifically [Connect[ing] Apps to Google](https://auth0.com/docs/connections/social/google)
+
+### 3. Ensure that customers who login with username/password and Google, with the same email address, will be treated as the same user. Also known as Account Linking.
+ * Utilize [Auth0 Account Linking](https://auth0.com/docs/users/user-account-linking) specifically the [Account Link Extension](https://auth0.com/docs/extensions/account-link-extension)
+
+#### 4. The application should display an error if the customer’s email address is not verified.
+ * Through the context provided within the `Auth0Provider` wrapper, use `useAuth0()` to access the authenticated user's profile. 
+ * The boolean value of `user.email_verified` tells us if the present authenticated account is verified and displays relevant "core functionality" if so. If the user is not verified, an appropriate message is displayed. 
+
+#### 5. Use Auth0 features to customize the profile page so both the photo and country flag are displayed without prompting users to input directly.
+ * Utilize pre-existing [rule](https://auth0.com/docs/rules), that is **Add Country To The User Profile** in the Auth0 management dashboard to enrich the user profile to include country information.
+ * Create a rule to elevate the data from the secondary profile in the `user` object that is returned by `useAuth0()`.
+ * **Learning:** Custom claims need to have a globally unique name, which to Auth0 is a URL. [Source](https://auth0.com/docs/tokens/create-namespaced-custom-claims)
+ * The country name is used to obtain a country code which is replaced in `https://lipis.github.io/flag-icon-css/flags/4x3/${code}.svg` to obtain the related country flag. 
 
 
-
-
+#### 6. If the photo and country of the customer are known, make sure this information is passed back to the application and shown after the user authenticates.
+ * When a user is authenticated, the previously displayed LoginButton is replaced with a menu that displays:
+    * the user's photo, if present, or the first letter of their name, if a photo is not available.
+    * the country flag is displayed along the route to the profile.
+ * This information is also present in the user profile page
 
