@@ -4,6 +4,7 @@ import history from "./utils/history";
 import PageLayout from "./Components/PageLayout";
 import { BrowserRouter as Router } from "react-router-dom";
 import loading from "./assets/loading.svg";
+import ErrorBoundary from "./Components/ErrorBoundary";
 
 function App() {
   const { isLoading, error } = useAuth0();
@@ -25,11 +26,13 @@ function App() {
   }
 
   return (
+    <ErrorBoundary>
     <Router history={history}>
       <div className="App">
         <PageLayout />
       </div>
     </Router>
+    </ErrorBoundary>
   );
 }
 

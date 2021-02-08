@@ -270,4 +270,7 @@ function getCountryCode(country) {
       .code.toLowerCase() || null
   );
 }
-export default getCountryCode;
+
+export function getCountryFlag(country){
+  return `https://lipis.github.io/flag-icon-css/flags/4x3/${getCountryCode(country)}.svg`
+}

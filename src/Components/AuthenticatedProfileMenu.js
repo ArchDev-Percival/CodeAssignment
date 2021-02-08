@@ -9,7 +9,7 @@ import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
 import FallbackAvatars from "./Avatar";
 import { useHistory } from "react-router-dom";
-import getCountryCode from "../utils/countryCodes";
+import {getCountryFlag} from "../utils/countryCodes";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme) => ({
@@ -105,9 +105,7 @@ export default function AuthenticatedProfileMenu() {
                       <img
                         width="8%"
                         height="8%"
-                        src={`https://lipis.github.io/flag-icon-css/flags/4x3/${getCountryCode(
-                          user["https://example.com/country"]
-                        )}.svg`}
+                        src={getCountryFlag(user["https://example.com/country"])}
                       />
                     </MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
