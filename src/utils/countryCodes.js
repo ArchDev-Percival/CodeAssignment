@@ -272,7 +272,7 @@ function getCountryCode(country) {
 }
 
 export function getCountryFlag(country){
-  if (country==null){
+  if (country===null){
     return null;
   }
   return `https://lipis.github.io/flag-icon-css/flags/4x3/${getCountryCode(country)}.svg`
