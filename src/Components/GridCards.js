@@ -34,10 +34,10 @@ export default function GridCards() {
   if (isAuthenticated && !user.email_verified) {
     return (
       <div>
-        <p>
-          Error: Please <strong>verify your account</strong> before your can
+        <h3>
+          Error: Please <u style={{color:"red"}}>verify your account</u> before your can
           browse through our assortment of travel destinations
-        </p>
+        </h3>
       </div>
     );
   } else if (!isAuthenticated) {
