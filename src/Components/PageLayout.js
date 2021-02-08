@@ -7,12 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { ReactComponent as CruiseIcon } from "../assets/cruise.svg";
-import 
-{AuthenticateButtonMenuToggle} from "./AuthenticateButtonMenuToggle";
+import { AuthenticateButtonMenuToggle } from "./AuthenticateButtonMenuToggle";
 import GridCards from "./GridCards";
 import Profile from "./Profile";
 import ErrorBoundary from "./ErrorBoundary";
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Switch, Route, useHistory } from "react-router-dom";
 
 const ProtectedRoute = ({ component, ...args }) => (
@@ -53,20 +52,18 @@ export default function PageLayout() {
               alignItems: "center",
             }}
           >
-          <div onClick={returnToHome}>
-            <CruiseIcon />
-            <Typography variant="h6" color="inherit" noWrap>
-              &nbsp;Travel0
-            </Typography>
-          </div>
-  
-              <AuthenticateButtonMenuToggle/>
-   
+            <div onClick={returnToHome}>
+              <CruiseIcon />
+              <Typography variant="h6" color="inherit" noWrap>
+                &nbsp;Travel0
+              </Typography>
+            </div>
+
+            <AuthenticateButtonMenuToggle />
           </div>
         </Toolbar>
       </AppBar>
       <main>
-       
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
@@ -93,15 +90,11 @@ export default function PageLayout() {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Switch>
-            <Route path="/" exact component={GridCards}/>
+            <Route path="/" exact component={GridCards} />
 
-            <ProtectedRoute
-              path="/profile"
-              component={Profile}
-            />
+            <ProtectedRoute path="/profile" component={Profile} />
           </Switch>
         </Container>
-        
       </main>
       {/* Footer */}
       <footer className={classes.footer}>

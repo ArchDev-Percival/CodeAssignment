@@ -15,13 +15,15 @@ export default class ErrorBoundary extends Component {
       error,
       info
     );
-    this.state.error = (error, info)
+    this.state.error = (error, info);
   }
   render() {
     if (this.state.hasError) {
-      return <div>
+      return (
+        <div>
           <p>{this.state.error[0]}</p>
-      </div>
+        </div>
+      );
     }
     return this.props.children;
   }

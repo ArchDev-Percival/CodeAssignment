@@ -45,7 +45,6 @@ export default function AuthenticatedProfileMenu() {
   };
 
   const handleLogout = (event) => {
-
     logout({ returnTo: window.location.origin });
     handleClose(event);
   };

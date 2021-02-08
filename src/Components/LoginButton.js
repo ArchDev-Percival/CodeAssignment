@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const LoginButton = () => {
-  const { loginWithRedirect} = useAuth0();
+  const { loginWithRedirect } = useAuth0();
   const classes = useStyles();
   return (
     <Button variant="contained" color="secondary" onClick={loginWithRedirect}>

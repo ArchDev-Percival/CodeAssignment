@@ -16,9 +16,8 @@ const useStyles = makeStyles({
 });
 
 export default function Profile() {
-  
   const classes = useStyles();
-  const {user} = useAuth0();
+  const { user } = useAuth0();
 
   return (
     <Card className={classes.root}>

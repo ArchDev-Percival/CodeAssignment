@@ -31,52 +31,53 @@ const useStyles = makeStyles((theme) => ({
 export default function GridCards() {
   const classes = useStyles();
   const { isAuthenticated, user } = useAuth0();
-    if (isAuthenticated && !user.email_verified) {
-      return (
-        <div>
-          <p>Error: Please <strong>verify your account</strong> before your can browse through our assortment of travel destinations</p>
-        </div>)
-    }
-    else if (!isAuthenticated) {
-      return (
-        <div>
-          <p>Please <strong>login or signup</strong> to browse through our assortment of travel destinations</p>
-        </div>)
-    }
-    else {
-      return (
-        <Grid container spacing={4}>
-
-          {cardsData.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image={card.img}
-                  title="Image title"
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {card.title}
-                  </Typography>
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    View
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      );
-    }
-  
-
-
-  
+  if (isAuthenticated && !user.email_verified) {
+    return (
+      <div>
+        <p>
+          Error: Please <strong>verify your account</strong> before your can
+          browse through our assortment of travel destinations
+        </p>
+      </div>
+    );
+  } else if (!isAuthenticated) {
+    return (
+      <div>
+        <p>
+          Please <strong>login or signup</strong> to browse through our
+          assortment of travel destinations
+        </p>
+      </div>
+    );
+  } else {
+    return (
+      <Grid container spacing={4}>
+        {cardsData.map((card) => (
+          <Grid item key={card} xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.cardMedia}
+                image={card.img}
+                title="Image title"
+              />
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {card.title}
+                </Typography>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" color="primary">
+                  View
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    );
+  }
 }
