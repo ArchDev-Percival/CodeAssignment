@@ -3,10 +3,6 @@
 ## Purpose:
 A front-end single page application in React.js to demonstrate the power of the Auth0 React SDK to help Cruise0 meet its core authentication/authorization requirements with minimal code. 
 
-**-----------------------**
-
-**-----------------------**
-
 
 ## Setup
 
@@ -59,9 +55,6 @@ A front-end single page application in React.js to demonstrate the power of the 
 #### Live Demo Link: 
  * https://agitated-newton-c814a2.netlify.app/
 
- **-----------------------**
- 
- **-----------------------**
  
 
 ## Usage:
@@ -97,9 +90,7 @@ A front-end single page application in React.js to demonstrate the power of the 
 
 
 
-**-----------------------**
 
-**-----------------------**
 
 
 ## Evaluation of Core Requirements
