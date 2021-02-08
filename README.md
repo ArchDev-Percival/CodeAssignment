@@ -1,10 +1,12 @@
-# Auth0 powering Cruise0 - A Proof of Concept for Travel0
+# Cruise0 - An IAM Proof of Concept powered by Auth0
 
 ## Purpose:
 A front-end single page application in React.js to demonstrate the power of the Auth0 React SDK to help Cruise0 meet its core authentication/authorization requirements with minimal code. 
 
 **-----------------------**
+
 **-----------------------**
+
 
 ## Setup
 
@@ -58,7 +60,9 @@ A front-end single page application in React.js to demonstrate the power of the 
  * https://agitated-newton-c814a2.netlify.app/
 
  **-----------------------**
+ 
  **-----------------------**
+ 
 
 ## Usage:
 
@@ -94,7 +98,9 @@ A front-end single page application in React.js to demonstrate the power of the 
 
 
 **-----------------------**
+
 **-----------------------**
+
 
 ## Evaluation of Core Requirements
 
