@@ -14,8 +14,8 @@ export default class ErrorBoundary extends Component {
       "The following error was caught by the Error Boundary: ",
       error,
       info
-    );
-    this.state.error = (error, info);
+    );    
+    this.setState({...this.state, error: (error, info)});
   }
   render() {
     if (this.state.hasError) {

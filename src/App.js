@@ -9,18 +9,13 @@ import ErrorBoundary from "./Components/ErrorBoundary";
 function App() {
   const { isLoading, error } = useAuth0();
 
-  const onRedirectCallback = (appState) => {
-    // Use the router's history module to replace the url
-    history.replace(appState?.returnTo || window.location.pathname);
-  };
-
   if (error) {
     return <div>Oops... {error.message}</div>;
   }
   if (isLoading) {
     return (
       <div>
-        <img src={loading}></img>
+        <img src={loading} alt="reloading"></img>
       </div>
     );
   }

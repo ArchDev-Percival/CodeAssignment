@@ -106,6 +106,7 @@ export default function AuthenticatedProfileMenu() {
                         width="8%"
                         height="8%"
                         src={getCountryFlag(user["https://example.com/country"])}
+                        alt="country flag"
                       />
                     </MenuItem>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>

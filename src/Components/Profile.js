@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { useAuth0 } from "@auth0/auth0-react";
 import {getCountryFlag} from "../utils/countryCodes"
-import { Height } from "@material-ui/icons";
 
 
 export default function Profile() {
@@ -15,8 +14,8 @@ export default function Profile() {
   return (
     <div >
     <div style={{display:"flex", flexDirection:"row", justifyContent:"center", height: "150px"}}>
-      <img src={user.picture}/>
-      <img src={getCountryFlag(user["https://example.com/country"])} height={"inherit"}/>
+      <img src={user.picture} alt="user avatar"/>
+      <img src={getCountryFlag(user["https://example.com/country"])} height={"inherit"} alt="country flag"/>
     </div>
     <Card >
       <CardActionArea>

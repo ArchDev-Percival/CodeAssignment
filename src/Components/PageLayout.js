@@ -1,5 +1,4 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,7 +9,6 @@ import { ReactComponent as CruiseIcon } from "../assets/cruise.svg";
 import { AuthenticateButtonMenuToggle } from "./AuthenticateButtonMenuToggle";
 import GridCards from "./GridCards";
 import Profile from "./Profile";
-import ErrorBoundary from "./ErrorBoundary";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Switch, Route, useHistory } from "react-router-dom";
 
