@@ -266,7 +266,7 @@ const countryCodes = [
 function getCountryCode(country) {
   return (
     countryCodes
-      .filter((countryObject) => countryObject.name == country)[0]
+      .filter((countryObject) => countryObject.name === country)[0]
       .code.toLowerCase() || null
   );
 }
